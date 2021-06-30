@@ -12,7 +12,10 @@ function playRound(playerSelection, computerSelection) {
     let loser;
 
     if (p === c) {
-        return 'It\'s a tie!';
+        return {
+            score: -1,
+            result: 'It\'s a tie!'
+        };
     }
 
     if ((p === 'rock' && c === 'scissors') ||
@@ -27,7 +30,12 @@ function playRound(playerSelection, computerSelection) {
         loser = p;
     }
 
-    return `${result} ${capitaliseFirstLetter(winner)} beats ${capitaliseFirstLetter(loser)}`;
+    const score = (winner === p) ? 1 : 0;
+    return {
+        score,
+        result: `${result} ${capitaliseFirstLetter(winner)} beats ${capitaliseFirstLetter(loser)}`
+    };
+}
 }
 
 function capitaliseFirstLetter(word) {
