@@ -36,3 +36,17 @@ h1 {
 .buttons button:hover {
     background-color: red;
 }
+
+.scores {
+    display: flex;
+    justify-content: center;
+}
+
+.score {
+    display: flex;
+    padding: 0px 5px;
+}
+
+.score p {
+    margin: 2px;
+}

@@ -97,9 +97,9 @@ buttons.forEach((button) => {
         }
 
         const pScore = document.querySelector('#player');
-        pScore.textContent = `Player score: ${playerScore}`;
+        pScore.textContent = playerScore;
         const cScore = document.querySelector('#computer');
-        cScore.textContent = `Computer score: ${computerScore}`;
+        cScore.textContent = computerScore;
 
     })
 });
