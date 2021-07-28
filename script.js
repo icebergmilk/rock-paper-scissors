@@ -37,48 +37,8 @@ function playRound(playerSelection, computerSelection) {
     };
 }
 
-function game() {
-    let pScore = 0;
-    let cScore = 0;
-
-    console.log('Rock, Paper, Scissors! Best out of 5');
-
-    for (let i = 0; i < 5; i++) {
-        const pSelection = getPlayerSelection(`Round: ${i + 1}. Enter your selection: `);
-        const currentRound = playRound(pSelection, computerPlay());
-        console.log(currentRound.result);
-        if (currentRound.score === 1) {
-            pScore++;
-        } else if (currentRound.score === 0) {
-            cScore++;
-        }
-    }
-
-    console.log(`Player score: ${pScore}`);
-    console.log(`Computer score: ${cScore}`);
-    let result;
-    if (pScore > cScore) {
-        result = 'You WIN!';
-    } else if (cScore > pScore) {
-        result = 'You LOSE!';
-    } else {
-        result = 'It\'s a tie!';
-    }
-    console.log(result);
-}
-
 function capitaliseFirstLetter(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
-}
-
-function getPlayerSelection(promptMessage) {
-    const re = /^(rock|paper|scissors)$/i;
-    let pSelection = prompt(promptMessage);
-    while (!re.test(pSelection)) {
-        pSelection = prompt('Invalid selection. Please select rock, paper, or scissors: ');
-    }
-
-    return pSelection;
 }
 
 function printWinner(player, computer) {
@@ -93,10 +53,8 @@ function printWinner(player, computer) {
 
     const winner = document.createElement('h2');
     winner.textContent = result;
-
     const resultsDiv = document.querySelector('.results');
     resultsDiv.appendChild(winner);
-    gameEnd = true;
 }
 
 function resetGame() {
@@ -122,13 +80,14 @@ buttons.forEach((button) => {
         if (gameEnd) {
             resetGame();
         }
-        const round = playRound(button.textContent, computerPlay());
-        const result = document.querySelector('.currentResult');
-        result.textContent = round.result;
 
-        if (round.score === 1) {
+        const currentRound = playRound(button.textContent, computerPlay());
+        const result = document.querySelector('.currentResult');
+        result.textContent = currentRound.result;
+
+        if (currentRound.score === 1) {
             playerScore++;
-        } else if (round.score === 0) {
+        } else if (currentRound.score === 0) {
             computerScore++;
         }
 
@@ -139,6 +98,7 @@ buttons.forEach((button) => {
 
         if (playerScore >= 5 || computerScore >= 5) {
             printWinner(playerScore, computerScore);
+            gameEnd = true;
         }
     })
 });
