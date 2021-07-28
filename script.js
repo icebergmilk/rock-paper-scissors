@@ -86,7 +86,23 @@ buttons.forEach((button) => {
     button.addEventListener('click', () => {
         const round = playRound(button.textContent, computerPlay());
         console.log(round);
+        
         const result = document.querySelector('.currentResult');
         result.textContent = round.result;
+
+        if (round.score === 1) {
+            playerScore++;
+        } else if (round.score === 0) {
+            computerScore++;
+        }
+
+        const pScore = document.querySelector('#player');
+        pScore.textContent = `Player score: ${playerScore}`;
+        const cScore = document.querySelector('#computer');
+        cScore.textContent = `Computer score: ${computerScore}`;
+
     })
 });
+
+let playerScore = 0;
+let computerScore = 0;
