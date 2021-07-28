@@ -1,0 +1,38 @@
+body {
+    background: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    line-height: 5px;
+}
+
+h1 {
+    font-family: 'Architects Daughter', cursive;
+    color: red;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.buttons button {
+    background-color: yellow;
+    margin: 10px;
+    width: 100px;
+    height: 40px;
+    border: 5px solid darkred;
+    border-radius: 10px;
+    font-family: 'Architects Daughter', cursive;
+    font-weight: 800;
+    font-size: 18px;
+    color: black;
+}
+
+.buttons button:hover {
+    background-color: red;
+}
