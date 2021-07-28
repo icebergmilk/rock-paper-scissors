@@ -84,6 +84,9 @@ function getPlayerSelection(promptMessage) {
 const buttons = document.querySelectorAll('.button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log(`clicked ${button.textContent}`);
+        const round = playRound(button.textContent, computerPlay());
+        console.log(round);
+        const result = document.querySelector('.currentResult');
+        result.textContent = round.result;
     })
 });
