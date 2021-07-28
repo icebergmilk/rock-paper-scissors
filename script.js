@@ -81,12 +81,48 @@ function getPlayerSelection(promptMessage) {
     return pSelection;
 }
 
+function printWinner(player, computer) {
+    let result;
+    if (player > computer) {
+        result = 'You WIN!';
+    } else if (computer > player) {
+        result = 'You LOSE!';
+    } else {
+        result = 'It\'s a tie!';
+    }
+
+    const winner = document.createElement('h2');
+    winner.textContent = result;
+
+    const resultsDiv = document.querySelector('.results');
+    resultsDiv.appendChild(winner);
+    gameEnd = true;
+}
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    const pScore = document.querySelector('#player');
+    pScore.textContent = playerScore;
+    const cScore = document.querySelector('#computer');
+    cScore.textContent = computerScore;
+    const resultsDiv = document.querySelector('.results');
+    const winner = document.querySelector('.results h2');
+    resultsDiv.removeChild(winner);
+    gameEnd = false;
+}
+
+let playerScore = 0;
+let computerScore = 0;
+let gameEnd = false;
+
 const buttons = document.querySelectorAll('.button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
+        if (gameEnd) {
+            resetGame();
+        }
         const round = playRound(button.textContent, computerPlay());
-        console.log(round);
-        
         const result = document.querySelector('.currentResult');
         result.textContent = round.result;
 
@@ -101,8 +137,8 @@ buttons.forEach((button) => {
         const cScore = document.querySelector('#computer');
         cScore.textContent = computerScore;
 
+        if (playerScore >= 5 || computerScore >= 5) {
+            printWinner(playerScore, computerScore);
+        }
     })
 });
-
-let playerScore = 0;
-let computerScore = 0;
